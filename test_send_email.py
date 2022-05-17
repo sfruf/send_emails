@@ -2,7 +2,7 @@ import pytest
 import send_email
 
 # Functionality that I want to test 
-# load email and password from a .env file
+# load email and password from a .env file (test+pass)
 # connect to gmail using smtp
 # send a message
 # read a class list from a .csv file
@@ -11,9 +11,8 @@ import send_email
 # batch set up a week of emails
 
 #TODO:
-#I clearly don't know how to make two packages talk to each other. Tomorrow I need to move test_send_email and send_email into the same folder and go from there
-#I'm not clear how to get send_email to run from this file either
-#Actually write the code that raises a name error
+# Write smtp test
+# Write a send message test
 
 
 #check that there is a variable named sender 
