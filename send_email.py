@@ -33,7 +33,8 @@ def connect_send(msg,SENDER=None,PASSWORD=None):
 
 def send_email():
     SENDER,PASSWORD=load_cred()
-    msg=make_message(SENDER, "Test", "This is a test",SENDER=SENDER)    
+    msg=make_message(SENDER, "Test", "This is a test",SENDER=SENDER)
+    sent=connect_send(msg,SENDER=sender,PASSWORD=password)    
     #send some email stuff here
 
 if __name__=='__main__':
