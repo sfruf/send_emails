@@ -28,3 +28,19 @@ def test_sender_gmail():
     sender,password=send_email.load_cred()
     assert 'gmail.com' in sender
 
+def test_make_email():
+    sender,password=send_email.load_cred()
+    msg=send_email.make_message(sender,"Test","This is a test")
+    assert 'gmail.com' in msg["To"]
+
+# I'm having a hard time getting this test to fail like I want. Essentially I need to use a lot of detail when 
+# I create msg that feels hard coded. Might be a sign I'm overtesting (which of course I am that's the point)
+
+def test_connect_send():
+    sender,password=send_email.load_cred()
+    msg=send_email.make_message(sender,"Test","This is a test")
+    sent=send_email.connect_send(msg,SENDER=sender,PASSWORD=password)
+    assert sent
+#This may also be a bad test since the test will fail not because of the code but because I didn't change 
+#the settings in gmail
+
