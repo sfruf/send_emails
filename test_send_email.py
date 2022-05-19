@@ -1,3 +1,4 @@
+from typing import List
 import pytest
 import send_email
 
@@ -44,3 +45,9 @@ def test_connect_send():
 #This may also be a bad test since the test will fail not because of the code but because I didn't change 
 #the settings in gmail
 
+def test_load_emails():
+    sender,password=send_email.load_cred()
+    msg=send_email.make_message("test","Test","This is a test")
+    assert msg["To"]==["test1@gmail.com","test2@gmail.com"]
+
+    
