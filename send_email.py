@@ -1,7 +1,9 @@
+import email
 import os
 from dotenv import load_dotenv, find_dotenv
 from email.message import EmailMessage
 import smtplib
+import csv 
 
 def load_cred():
     # find .env automagically by walking up directories until it's found
@@ -13,11 +15,20 @@ def load_cred():
     return SENDER,PASSWORD
 
 def make_message(recipient, subject, body,SENDER=None):
+    if "@" not in recipient:
+        recipients=[]
+        with open(f'{recipient}_emails.csv') as csvfile:
+            emails=csv.reader(csvfile)
+            for row in emails:
+                recipients.append(row)
+    else:
+        recipients=recipient
+
     msg=EmailMessage()
     msg.set_content(body)
     msg["Subject"]=subject
     msg["From"]=SENDER 
-    msg["To"]=recipient
+    msg["To"]=recipients
     return msg
 
 def connect_send(msg,SENDER=None,PASSWORD=None):
