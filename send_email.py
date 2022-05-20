@@ -14,6 +14,21 @@ def load_cred():
 
     return SENDER,PASSWORD
 
+def load_batch():
+    # load class_list.txt and read classes, bodies
+    with open('class_list.txt') as f:
+        lines=f.readlines()
+    classes=[]
+    bodies=[]
+    for line in lines:
+        if line.strip():
+            if "Hello" not in line:
+                classes.append(line.strip())
+            else:
+                bodies.append(line.strip())
+
+    return classes,bodies
+
 def make_message(recipient, subject, body,SENDER=None):
     if "@" not in recipient:
         recipients=[]
@@ -42,11 +57,20 @@ def connect_send(msg,SENDER=None,PASSWORD=None):
         sent=False
     return sent
 
-def send_email():
+def send_email(recipient="test",body="This is a test"):
     SENDER,PASSWORD=load_cred()
-    msg=make_message(SENDER, "Test", "This is a test",SENDER=SENDER)
-    sent=connect_send(msg,SENDER=sender,PASSWORD=password)    
-    #send some email stuff here
+    msg=make_message(recipient, "Test", body,SENDER=SENDER)
+    sent=connect_send(msg,SENDER=SENDER,PASSWORD=PASSWORD)
+    return sent    
+
+def batch_send():
+    # Looks for a class_list.txt file and send emails to each of the classes
+    classes,bodies=load_batch()
+    sentcount=0
+    for class1,body in zip(classes,bodies):
+        sentcount+=send_email(recipient=class1,body=body)     
+    return sentcount
 
 if __name__=='__main__':
-    send_email()
+    sentcount=batch_send()
+    print(sentcount)

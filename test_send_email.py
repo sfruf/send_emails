@@ -8,12 +8,8 @@ import send_email
 # send a message
 # read a class list from a .csv file
 # read class information from .csv 
-# send emails in the future
-# batch set up a week of emails
-
-#TODO:
-# Write smtp test
-# Write a send message test
+# send emails in the future #didn't end up implementing because gmail is shutting this down
+# batch set up a week of emails 
 
 
 #check that there is a variable named sender 
@@ -48,6 +44,8 @@ def test_connect_send():
 def test_load_emails():
     sender,password=send_email.load_cred()
     msg=send_email.make_message("test","Test","This is a test")
-    assert msg["To"]==["test1@gmail.com","test2@gmail.com"]
+    assert msg["To"]=="['test1@gmail.com'], ['test2@gmail.com']"
 
-    
+def test_load_batch():
+    classes,bodies=send_email.load_batch()
+    assert classes==["test","test2"]

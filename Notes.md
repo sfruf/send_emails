@@ -1,5 +1,5 @@
 # Summary 
-Project to practice Test Driven Development drawing on the tutorial here: https://dev.to/maxhumber/how-to-send-and-schedule-emails-with-python-dnb
+Project to practice Test Driven Development drawing on the tutorial here: https://dev.to/maxhumber/how-to-send-and-schedule-emails-with-python-dnb. Project is pretty overengineered since sending an email only takes a few lines of code but was ultimately a good exercise. 
 
 
 # 5/17/22
@@ -9,3 +9,6 @@ Got the project to the point where it sends emails! I also found out that gmail 
 
 # 5/19/22 
 Didn't have a ton of time today, got the load emails part tested/implemented. I'm appreciating that tests don't need to be particularly clever, they should just test what is needed. 
+
+# 5/20/22 
+Implemented the final features and wrapped up the project. 
